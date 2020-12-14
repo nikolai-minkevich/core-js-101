@@ -92,16 +92,17 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(a, b, c) {
-  let res = false;
-  if (a + b > c) {
-    if (b + c > a) {
-      if (c + a > b) {
-        res = true;
-      }
-    }
-  }
-  return res;
+function isTriangle(/* a, b, c */) {
+  throw new Error('Not implemented');
+  // let res = false;
+  // if (a + b > c) {
+  //   if (b + c > a) {
+  //     if (c + a > b) {
+  //       res = true;
+  //     }
+  //   }
+  // }
+  // return res;
 }
 
 
@@ -193,13 +194,14 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(str) {
-  return str.split('').find((item, i, array) => {
-    if (array.indexOf(item) === array.lastIndexOf(item)) {
-      return item;
-    }
-    return null;
-  });
+function findFirstSingleChar(/* str */) {
+  throw new Error('Not implemented');
+  // return str.split('').find((item, i, array) => {
+  //   if (array.indexOf(item) === array.lastIndexOf(item)) {
+  //     return item;
+  //   }
+  //   return null;
+  // });
 }
 
 
@@ -225,22 +227,23 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  let str = '';
-  if (isStartIncluded) {
-    str += '[';
-  } else {
-    str += '(';
-  }
-  str += [a, b].sort()[0];
-  str += ', ';
-  str += [a, b].sort()[1];
-  if (isEndIncluded) {
-    str += ']';
-  } else {
-    str += ')';
-  }
-  return str;
+function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
+  throw new Error('Not implemented');
+  // let str = '';
+  // if (isStartIncluded) {
+  //   str += '[';
+  // } else {
+  //   str += '(';
+  // }
+  // str += [a, b].sort()[0];
+  // str += ', ';
+  // str += [a, b].sort()[1];
+  // if (isEndIncluded) {
+  //   str += ']';
+  // } else {
+  //   str += ')';
+  // }
+  // return str;
 }
 
 
@@ -298,35 +301,36 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(ccn) {
-  const arr = ccn.toString().split('');
-  let mode = 1;
-  const res = [];
-  if ((arr.length - 1) % 2 === 0) {
-    mode = 0;
-  }
-  for (let i = 0; i < arr.length - 1; i += 1) {
-    if (mode === 0) {
-      if (i % 2 !== 0) {
-        let tmp = arr[i] * 2;
-        if (tmp.toString().length > 1) {
-          tmp = parseInt(tmp.toString()[0], 10) + parseInt(tmp.toString()[1], 10);
-        }
-        res.push(tmp);
-      } else {
-        res.push(parseInt(arr[i], 10));
-      }
-    } else if (i % 2 === 0) {
-      let tmp = arr[i] * 2;
-      if (tmp > 9) tmp -= 9;
-      res.push(tmp);
-    } else {
-      res.push(parseInt(arr[i], 10));
-    }
-  }
-  res.push(parseInt(arr[arr.length - 1], 10));
-  if (res.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) % 10 === 0) return true;
-  return false;
+function isCreditCardNumber(/* ccn */) {
+  throw new Error('Not implemented');
+  // const arr = ccn.toString().split('');
+  // let mode = 1;
+  // const res = [];
+  // if ((arr.length - 1) % 2 === 0) {
+  //   mode = 0;
+  // }
+  // for (let i = 0; i < arr.length - 1; i += 1) {
+  //   if (mode === 0) {
+  //     if (i % 2 !== 0) {
+  //       let tmp = arr[i] * 2;
+  //       if (tmp.toString().length > 1) {
+  //         tmp = parseInt(tmp.toString()[0], 10) + parseInt(tmp.toString()[1], 10);
+  //       }
+  //       res.push(tmp);
+  //     } else {
+  //       res.push(parseInt(arr[i], 10));
+  //     }
+  //   } else if (i % 2 === 0) {
+  //     let tmp = arr[i] * 2;
+  //     if (tmp > 9) tmp -= 9;
+  //     res.push(tmp);
+  //   } else {
+  //     res.push(parseInt(arr[i], 10));
+  //   }
+  // }
+  // res.push(parseInt(arr[arr.length - 1], 10));
+  // if (res.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) % 10 === 0) return true;
+  // return false;
 }
 
 /**
@@ -373,43 +377,45 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(str) {
-  const bracketsConfig = [['(', ')'], ['[', ']'], ['<', '>'], ['{', '}']];
-  if (str.length % 2 !== 0) return false;
-  const arr = [];
-  for (let i = 0; i < str.length; i += 1) {
-    for (let j = 0; j < bracketsConfig.length; j += 1) {
-      const brakePair = bracketsConfig[j];
-      if (brakePair.indexOf(str[i]) !== -1) {
-        switch (brakePair.indexOf(str[i])) {
-          case 0:
-            // если скобка - любая открывающая, то добавляем в стек
-            // exception for same brakes
-            if (brakePair[0] === brakePair[1]) {
-              if (arr[arr.length - 1] === brakePair[0]) {
-                arr.pop();
-                break;
-              }
-            }
-            arr.push(str[i]);
-            break;
-          case 1:
-            // если скобка - закрывающая, то
-            // проверяем посл элемент стека
-            // если он содержит такую же, то
-            // выкидываем его из стека и идём дальше
-            if (brakePair.indexOf(arr.pop()) !== 0) {
-              return false;
-            }
-            break;
-          default:
-            return false;
-        }
-      }
-    }
-  }
-  if (arr.length > 0) return false;
-  return true;
+function isBracketsBalanced(/* str */) {
+  throw new Error('Not implemented');
+  // // взял свое решение из задачи brackets
+  // const bracketsConfig = [['(', ')'], ['[', ']'], ['<', '>'], ['{', '}']];
+  // if (str.length % 2 !== 0) return false;
+  // const arr = [];
+  // for (let i = 0; i < str.length; i += 1) {
+  //   for (let j = 0; j < bracketsConfig.length; j += 1) {
+  //     const brakePair = bracketsConfig[j];
+  //     if (brakePair.indexOf(str[i]) !== -1) {
+  //       switch (brakePair.indexOf(str[i])) {
+  //         case 0:
+  //           // если скобка - любая открывающая, то добавляем в стек
+  //           // exception for same brakes
+  //           if (brakePair[0] === brakePair[1]) {
+  //             if (arr[arr.length - 1] === brakePair[0]) {
+  //               arr.pop();
+  //               break;
+  //             }
+  //           }
+  //           arr.push(str[i]);
+  //           break;
+  //         case 1:
+  //           // если скобка - закрывающая, то
+  //           // проверяем посл элемент стека
+  //           // если он содержит такую же, то
+  //           // выкидываем его из стека и идём дальше
+  //           if (brakePair.indexOf(arr.pop()) !== 0) {
+  //             return false;
+  //           }
+  //           break;
+  //         default:
+  //           return false;
+  //       }
+  //     }
+  //   }
+  // }
+  // if (arr.length > 0) return false;
+  // return true;
 }
 
 
@@ -450,36 +456,37 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(pathes) {
-  const splited = pathes.map((item) => item.split('/'));
-  const comm = [];
-  let str = '';
-  const minLength = splited.reduce((res, item) => {
-    if (res > item.length) {
-      return item.length;
-    }
-    return res;
-  }, splited[0].length);
-  splited.map((item) => item.splice(minLength));
-  let p = '';
-  for (let i = 0; i < minLength; i += 1) {
-    for (let j = 0; j < splited.length; j += 1) {
-      if (j === 0) {
-        p = splited[j][i];
-      }
-      if (splited[j][i] !== p) {
-        str = `${comm.join('/')}`;
-        if (comm.length > 0) str += '/';
-        return str;
-      }
-      if (j === splited.length - 1) {
-        comm.push(p);
-      }
-    }
-  }
-  str = `${comm.join('/')}`;
-  if (comm.length > 0) str += '/';
-  return str;
+function getCommonDirectoryPath(/* pathes */) {
+  throw new Error('Not implemented');
+  // const splited = pathes.map((item) => item.split('/'));
+  // const comm = [];
+  // let str = '';
+  // const minLength = splited.reduce((res, item) => {
+  //   if (res > item.length) {
+  //     return item.length;
+  //   }
+  //   return res;
+  // }, splited[0].length);
+  // splited.map((item) => item.splice(minLength));
+  // let p = '';
+  // for (let i = 0; i < minLength; i += 1) {
+  //   for (let j = 0; j < splited.length; j += 1) {
+  //     if (j === 0) {
+  //       p = splited[j][i];
+  //     }
+  //     if (splited[j][i] !== p) {
+  //       str = `${comm.join('/')}`;
+  //       if (comm.length > 0) str += '/';
+  //       return str;
+  //     }
+  //     if (j === splited.length - 1) {
+  //       comm.push(p);
+  //     }
+  //   }
+  // }
+  // str = `${comm.join('/')}`;
+  // if (comm.length > 0) str += '/';
+  // return str;
 }
 
 
