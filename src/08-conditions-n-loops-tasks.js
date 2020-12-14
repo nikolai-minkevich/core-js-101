@@ -139,6 +139,15 @@ function isTriangle(a, b, c) {
  */
 function doRectanglesOverlap(/* rect1, rect2 */) {
   throw new Error('Not implemented');
+  // const rect1X = rect1.top;
+  // const rect1Y = rect1.left;
+  // const rect1X1 = rect1.top + rect1.height;
+  // const rect1Y1 = rect1.left + rect1.width;
+  // const rect2X = rect2.top;
+  // const rect2Y = rect2.left;
+  // const rect2X1 = rect2.top + rect2.height;
+  // const rect2Y1 = rect2.left + rect2.width;
+  // return (rect1Y < rect2Y1 || rect1Y1 > rect2Y || rect1X1 < rect2X || rect1X > rect2X1);
 }
 
 
@@ -185,7 +194,12 @@ function isInsideCircle(/* circle, point */) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  return [...str].find((n, i, a) => a.indexOf(n) === a.lastIndexOf(n)) || null;
+  return str.split('').find((item, i, array) => {
+    if (array.indexOf(item) === array.lastIndexOf(item)) {
+      return item;
+    }
+    return null;
+  });
 }
 
 
@@ -211,8 +225,22 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let str = '';
+  if (isStartIncluded) {
+    str += '[';
+  } else {
+    str += '(';
+  }
+  str += [a, b].sort()[0];
+  str += ', ';
+  str += [a, b].sort()[1];
+  if (isEndIncluded) {
+    str += ']';
+  } else {
+    str += ')';
+  }
+  return str;
 }
 
 
@@ -228,8 +256,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 
@@ -245,8 +273,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return parseInt(num.toString().split('').reverse().join(''), 10);
 }
 
 
@@ -270,8 +298,35 @@ function reverseInteger(/* num */) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const arr = ccn.toString().split('');
+  let mode = 1;
+  const res = [];
+  if ((arr.length - 1) % 2 === 0) {
+    mode = 0;
+  }
+  for (let i = 0; i < arr.length - 1; i += 1) {
+    if (mode === 0) {
+      if (i % 2 !== 0) {
+        let tmp = arr[i] * 2;
+        if (tmp.toString().length > 1) {
+          tmp = parseInt(tmp.toString()[0], 10) + parseInt(tmp.toString()[1], 10);
+        }
+        res.push(tmp);
+      } else {
+        res.push(parseInt(arr[i], 10));
+      }
+    } else if (i % 2 === 0) {
+      let tmp = arr[i] * 2;
+      if (tmp > 9) tmp -= 9;
+      res.push(tmp);
+    } else {
+      res.push(parseInt(arr[i], 10));
+    }
+  }
+  res.push(parseInt(arr[arr.length - 1], 10));
+  if (res.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) % 10 === 0) return true;
+  return false;
 }
 
 /**
@@ -288,8 +343,12 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  let radix = num;
+  while (radix >= 9) {
+    radix = radix.toString().split('').reduce((a, b) => parseInt(a, 10) + parseInt(b, 10));
+  }
+  return radix;
 }
 
 
@@ -314,8 +373,43 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const bracketsConfig = [['(', ')'], ['[', ']'], ['<', '>'], ['{', '}']];
+  if (str.length % 2 !== 0) return false;
+  const arr = [];
+  for (let i = 0; i < str.length; i += 1) {
+    for (let j = 0; j < bracketsConfig.length; j += 1) {
+      const brakePair = bracketsConfig[j];
+      if (brakePair.indexOf(str[i]) !== -1) {
+        switch (brakePair.indexOf(str[i])) {
+          case 0:
+            // если скобка - любая открывающая, то добавляем в стек
+            // exception for same brakes
+            if (brakePair[0] === brakePair[1]) {
+              if (arr[arr.length - 1] === brakePair[0]) {
+                arr.pop();
+                break;
+              }
+            }
+            arr.push(str[i]);
+            break;
+          case 1:
+            // если скобка - закрывающая, то
+            // проверяем посл элемент стека
+            // если он содержит такую же, то
+            // выкидываем его из стека и идём дальше
+            if (brakePair.indexOf(arr.pop()) !== 0) {
+              return false;
+            }
+            break;
+          default:
+            return false;
+        }
+      }
+    }
+  }
+  if (arr.length > 0) return false;
+  return true;
 }
 
 
@@ -356,8 +450,36 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const splited = pathes.map((item) => item.split('/'));
+  const comm = [];
+  let str = '';
+  const minLength = splited.reduce((res, item) => {
+    if (res > item.length) {
+      return item.length;
+    }
+    return res;
+  }, splited[0].length);
+  splited.map((item) => item.splice(minLength));
+  let p = '';
+  for (let i = 0; i < minLength; i += 1) {
+    for (let j = 0; j < splited.length; j += 1) {
+      if (j === 0) {
+        p = splited[j][i];
+      }
+      if (splited[j][i] !== p) {
+        str = `${comm.join('/')}`;
+        if (comm.length > 0) str += '/';
+        return str;
+      }
+      if (j === splited.length - 1) {
+        comm.push(p);
+      }
+    }
+  }
+  str = `${comm.join('/')}`;
+  if (comm.length > 0) str += '/';
+  return str;
 }
 
 
