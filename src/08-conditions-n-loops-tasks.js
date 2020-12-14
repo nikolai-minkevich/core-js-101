@@ -193,13 +193,14 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(str) {
-  return str.split('').find((item, i, array) => {
-    if (array.indexOf(item) === array.lastIndexOf(item)) {
-      return item;
-    }
-    return null;
-  });
+function findFirstSingleChar(/* str */) {
+  throw new Error('Not implemented');
+  // return str.split('').find((item, i, array) => {
+  //   if (array.indexOf(item) === array.lastIndexOf(item)) {
+  //     return item;
+  //   }
+  //   return null;
+  // });
 }
 
 
@@ -225,23 +226,23 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  // throw new Error('Not implemented');
-  let str = '';
-  if (isStartIncluded) {
-    str += '[';
-  } else {
-    str += '(';
-  }
-  str += [a, b].sort()[0];
-  str += ', ';
-  str += [a, b].sort()[1];
-  if (isEndIncluded) {
-    str += ']';
-  } else {
-    str += ')';
-  }
-  return str;
+function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
+  throw new Error('Not implemented');
+  // let str = '';
+  // if (isStartIncluded) {
+  //   str += '[';
+  // } else {
+  //   str += '(';
+  // }
+  // str += [a, b].sort()[0];
+  // str += ', ';
+  // str += [a, b].sort()[1];
+  // if (isEndIncluded) {
+  //   str += ']';
+  // } else {
+  //   str += ')';
+  // }
+  // return str;
 }
 
 
@@ -257,9 +258,8 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
-  // return str.split('').reverse().join('');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 
