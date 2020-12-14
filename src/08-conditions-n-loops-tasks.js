@@ -298,36 +298,35 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
-  // const arr = ccn.toString().split('');
-  // let mode = 1;
-  // const res = [];
-  // if ((arr.length - 1) % 2 === 0) {
-  //   mode = 0;
-  // }
-  // for (let i = 0; i < arr.length - 1; i += 1) {
-  //   if (mode === 0) {
-  //     if (i % 2 !== 0) {
-  //       let tmp = arr[i] * 2;
-  //       if (tmp.toString().length > 1) {
-  //         tmp = parseInt(tmp.toString()[0], 10) + parseInt(tmp.toString()[1], 10);
-  //       }
-  //       res.push(tmp);
-  //     } else {
-  //       res.push(parseInt(arr[i], 10));
-  //     }
-  //   } else if (i % 2 === 0) {
-  //     let tmp = arr[i] * 2;
-  //     if (tmp > 9) tmp -= 9;
-  //     res.push(tmp);
-  //   } else {
-  //     res.push(parseInt(arr[i], 10));
-  //   }
-  // }
-  // res.push(parseInt(arr[arr.length - 1], 10));
-  // if (res.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) % 10 === 0) return true;
-  // return false;
+function isCreditCardNumber(ccn) {
+  const arr = ccn.toString().split('');
+  let mode = 1;
+  const res = [];
+  if ((arr.length - 1) % 2 === 0) {
+    mode = 0;
+  }
+  for (let i = 0; i < arr.length - 1; i += 1) {
+    if (mode === 0) {
+      if (i % 2 !== 0) {
+        let tmp = arr[i] * 2;
+        if (tmp.toString().length > 1) {
+          tmp = parseInt(tmp.toString()[0], 10) + parseInt(tmp.toString()[1], 10);
+        }
+        res.push(tmp);
+      } else {
+        res.push(parseInt(arr[i], 10));
+      }
+    } else if (i % 2 === 0) {
+      let tmp = arr[i] * 2;
+      if (tmp > 9) tmp -= 9;
+      res.push(tmp);
+    } else {
+      res.push(parseInt(arr[i], 10));
+    }
+  }
+  res.push(parseInt(arr[arr.length - 1], 10));
+  if (res.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) % 10 === 0) return true;
+  return false;
 }
 
 /**
