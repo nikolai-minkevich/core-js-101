@@ -27,12 +27,13 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(num) {
-  let res = num;
-  if (num % 3 === 0) res = 'Fizz';
-  if (num % 5 === 0) res = 'Buzz';
-  if (num % 3 === 0 && num % 5 === 0) res = 'FizzBuzz';
-  return res;
+function getFizzBuzz(/* num */) {
+  throw new Error('Not implemented');
+  // let res = num;
+  // if (num % 3 === 0) res = 'Fizz';
+  // if (num % 5 === 0) res = 'Buzz';
+  // if (num % 3 === 0 && num % 5 === 0) res = 'FizzBuzz';
+  // return res;
 }
 
 
@@ -47,12 +48,13 @@ function getFizzBuzz(num) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(n) {
-  let res = 1;
-  for (let i = 1; i <= n; i += 1) {
-    res *= i;
-  }
-  return res;
+function getFactorial(/* n */) {
+  throw new Error('Not implemented');
+  // let res = 1;
+  // for (let i = 1; i <= n; i += 1) {
+  //   res *= i;
+  // }
+  // return res;
 }
 
 
@@ -68,12 +70,13 @@ function getFactorial(n) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(n1, n2) {
-  let res = 0;
-  for (let i = n1; i <= n2; i += 1) {
-    res += i;
-  }
-  return res;
+function getSumBetweenNumbers(/* n1, n2 */) {
+  throw new Error('Not implemented');
+  // let res = 0;
+  // for (let i = n1; i <= n2; i += 1) {
+  //   res += i;
+  // }
+  // return res;
 }
 
 
@@ -259,8 +262,9 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(str) {
-  return str.split('').reverse().join('');
+function reverseString(/* str */) {
+  throw new Error('Not implemented');
+  // return str.split('').reverse().join('');
 }
 
 
@@ -276,8 +280,9 @@ function reverseString(str) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(num) {
-  return parseInt(num.toString().split('').reverse().join(''), 10);
+function reverseInteger(/* num */) {
+  throw new Error('Not implemented');
+  // return parseInt(num.toString().split('').reverse().join(''), 10);
 }
 
 
@@ -347,12 +352,13 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(num) {
-  let radix = num;
-  while (radix >= 9) {
-    radix = radix.toString().split('').reduce((a, b) => parseInt(a, 10) + parseInt(b, 10));
-  }
-  return radix;
+function getDigitalRoot(/* num */) {
+  throw new Error('Not implemented');
+  // let radix = num;
+  // while (radix >= 9) {
+  //   radix = radix.toString().split('').reduce((a, b) => parseInt(a, 10) + parseInt(b, 10));
+  // }
+  // return radix;
 }
 
 
