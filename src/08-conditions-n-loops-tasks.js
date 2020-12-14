@@ -225,22 +225,23 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  let str = '';
-  if (isStartIncluded) {
-    str += '[';
-  } else {
-    str += '(';
-  }
-  str += [a, b].sort()[0];
-  str += ', ';
-  str += [a, b].sort()[1];
-  if (isEndIncluded) {
-    str += ']';
-  } else {
-    str += ')';
-  }
-  return str;
+function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
+  throw new Error('Not implemented');
+  // let str = '';
+  // if (isStartIncluded) {
+  //   str += '[';
+  // } else {
+  //   str += '(';
+  // }
+  // str += [a, b].sort()[0];
+  // str += ', ';
+  // str += [a, b].sort()[1];
+  // if (isEndIncluded) {
+  //   str += ']';
+  // } else {
+  //   str += ')';
+  // }
+  // return str;
 }
 
 
@@ -273,9 +274,9 @@ function reverseString(str) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
+function reverseInteger(num) {
   throw new Error('Not implemented');
-  // return parseInt(num.toString().split('').reverse().join(''), 10);
+  return parseInt(num.toString().split('').reverse().join(''), 10);
 }
 
 
