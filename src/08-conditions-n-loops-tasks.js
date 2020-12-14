@@ -225,23 +225,22 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
-  // let str = '';
-  // if (isStartIncluded) {
-  //   str += '[';
-  // } else {
-  //   str += '(';
-  // }
-  // str += [a, b].sort()[0];
-  // str += ', ';
-  // str += [a, b].sort()[1];
-  // if (isEndIncluded) {
-  //   str += ']';
-  // } else {
-  //   str += ')';
-  // }
-  // return str;
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let str = '';
+  if (isStartIncluded) {
+    str += '[';
+  } else {
+    str += '(';
+  }
+  str += [a, b].sort()[0];
+  str += ', ';
+  str += [a, b].sort()[1];
+  if (isEndIncluded) {
+    str += ']';
+  } else {
+    str += ')';
+  }
+  return str;
 }
 
 
