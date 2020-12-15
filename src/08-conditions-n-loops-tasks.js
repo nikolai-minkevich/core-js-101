@@ -139,15 +139,6 @@ function isTriangle(a, b, c) {
  */
 function doRectanglesOverlap(/* rect1, rect2 */) {
   throw new Error('Not implemented');
-  // const rect1X = rect1.top;
-  // const rect1Y = rect1.left;
-  // const rect1X1 = rect1.top + rect1.height;
-  // const rect1Y1 = rect1.left + rect1.width;
-  // const rect2X = rect2.top;
-  // const rect2Y = rect2.left;
-  // const rect2X1 = rect2.top + rect2.height;
-  // const rect2Y1 = rect2.left + rect2.width;
-  // return (rect1Y < rect2Y1 || rect1Y1 > rect2Y || rect1X1 < rect2X || rect1X > rect2X1);
 }
 
 
@@ -451,37 +442,36 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
-  // const splited = pathes.map((item) => item.split('/'));
-  // const comm = [];
-  // let str = '';
-  // const minLength = splited.reduce((res, item) => {
-  //   if (res > item.length) {
-  //     return item.length;
-  //   }
-  //   return res;
-  // }, splited[0].length);
-  // splited.map((item) => item.splice(minLength));
-  // let p = '';
-  // for (let i = 0; i < minLength; i += 1) {
-  //   for (let j = 0; j < splited.length; j += 1) {
-  //     if (j === 0) {
-  //       p = splited[j][i];
-  //     }
-  //     if (splited[j][i] !== p) {
-  //       str = `${comm.join('/')}`;
-  //       if (comm.length > 0) str += '/';
-  //       return str;
-  //     }
-  //     if (j === splited.length - 1) {
-  //       comm.push(p);
-  //     }
-  //   }
-  // }
-  // str = `${comm.join('/')}`;
-  // if (comm.length > 0) str += '/';
-  // return str;
+function getCommonDirectoryPath(pathes) {
+  const splited = pathes.map((item) => item.split('/'));
+  const comm = [];
+  let str = '';
+  const minLength = splited.reduce((res, item) => {
+    if (res > item.length) {
+      return item.length;
+    }
+    return res;
+  }, splited[0].length);
+  splited.map((item) => item.splice(minLength));
+  let p = '';
+  for (let i = 0; i < minLength; i += 1) {
+    for (let j = 0; j < splited.length; j += 1) {
+      if (j === 0) {
+        p = splited[j][i];
+      }
+      if (splited[j][i] !== p) {
+        str = `${comm.join('/')}`;
+        if (comm.length > 0) str += '/';
+        return str;
+      }
+      if (j === splited.length - 1) {
+        comm.push(p);
+      }
+    }
+  }
+  str = `${comm.join('/')}`;
+  if (comm.length > 0) str += '/';
+  return str;
 }
 
 

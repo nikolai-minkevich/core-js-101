@@ -64,20 +64,6 @@ function getPowerFunction(exponent) {
  */
 function getPolynom() {
   throw new Error('Not implemented');
-  // return (a, b, c) => {
-  //   if (arguments.length === 1) {
-  //     return `y = ${a}`;
-  //   }
-  //   if (arguments.length === 2) {
-  //     return `y = ${a} * x + ${b}`;
-  //     // return a * x + b;
-  //   }
-  //   if (arguments.length === 3) {
-  //     return `y = ${a}*x^2 + ${b}*x + ${c}`;
-  //     // return a * x ** 2 + b * x + c;
-  //   }
-  //   return null;
-  // };
 }
 
 
