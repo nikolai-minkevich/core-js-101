@@ -82,7 +82,7 @@ function getPasswordValidator(minLength) {
   // throw new Error('Not implemented');
   return new RegExp(`^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{${minLength},}$`);
   // const re = `/^(?=.{${minLength},})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.* ).*$/`;
-  // return new RegExp(re, 'm');
+  // return new RegExp(re, 'm'); 
 }
 
 
