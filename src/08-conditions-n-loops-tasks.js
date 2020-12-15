@@ -442,37 +442,36 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
-  // const splited = pathes.map((item) => item.split('/'));
-  // const comm = [];
-  // let str = '';
-  // const minLength = splited.reduce((res, item) => {
-  //   if (res > item.length) {
-  //     return item.length;
-  //   }
-  //   return res;
-  // }, splited[0].length);
-  // splited.map((item) => item.splice(minLength));
-  // let p = '';
-  // for (let i = 0; i < minLength; i += 1) {
-  //   for (let j = 0; j < splited.length; j += 1) {
-  //     if (j === 0) {
-  //       p = splited[j][i];
-  //     }
-  //     if (splited[j][i] !== p) {
-  //       str = `${comm.join('/')}`;
-  //       if (comm.length > 0) str += '/';
-  //       return str;
-  //     }
-  //     if (j === splited.length - 1) {
-  //       comm.push(p);
-  //     }
-  //   }
-  // }
-  // str = `${comm.join('/')}`;
-  // if (comm.length > 0) str += '/';
-  // return str;
+function getCommonDirectoryPath(pathes) {
+  const splited = pathes.map((item) => item.split('/'));
+  const comm = [];
+  let str = '';
+  const minLength = splited.reduce((res, item) => {
+    if (res > item.length) {
+      return item.length;
+    }
+    return res;
+  }, splited[0].length);
+  splited.map((item) => item.splice(minLength));
+  let p = '';
+  for (let i = 0; i < minLength; i += 1) {
+    for (let j = 0; j < splited.length; j += 1) {
+      if (j === 0) {
+        p = splited[j][i];
+      }
+      if (splited[j][i] !== p) {
+        str = `${comm.join('/')}`;
+        if (comm.length > 0) str += '/';
+        return str;
+      }
+      if (j === splited.length - 1) {
+        comm.push(p);
+      }
+    }
+  }
+  str = `${comm.join('/')}`;
+  if (comm.length > 0) str += '/';
+  return str;
 }
 
 
